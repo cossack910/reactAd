@@ -8,7 +8,7 @@ docker exec -it reactad npm run dev
 | No                                                       | title                                          |
 | -------------------------------------------------------- | ---------------------------------------------- |
 | [#1](https://github.com/cossack910/reactAd/issues/1) | 再レンダリング |
-| [#2](https://github.com/cossack910/reactAd/issues/2) | Css周り |
+| [#2](https://github.com/cossack910/reactAd/issues/2) | CSS |
 
 
 ＃環境構築
