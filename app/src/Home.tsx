@@ -1,4 +1,4 @@
-export const Home: React.FC = () => {
+export const Home = () => {
   return (
     <div>
       <h1>Homeページ</h1>

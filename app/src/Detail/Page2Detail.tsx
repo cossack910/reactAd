@@ -1,4 +1,4 @@
-export const Page2Detail: React.FC = () => {
+export const Page2Detail = () => {
   return (
     <div>
       <h1>page2の詳細</h1>
