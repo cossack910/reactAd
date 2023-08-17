@@ -9,7 +9,7 @@ docker exec -it reactad npm run dev
 | -------------------------------------------------------- | ---------------------------------------------- |
 | [#1](https://github.com/cossack910/reactAd/issues/1) | 再レンダリング |
 | [#2](https://github.com/cossack910/reactAd/issues/2) | CSS |
-| [#3](https://github.com/cossack910/reactAd/issues/3) | React Router6 |
+| [#3](https://github.com/cossack910/reactAd/issues/4) | React Router6 |
 
 ＃環境構築
 
