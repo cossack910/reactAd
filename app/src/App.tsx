@@ -1,23 +1,23 @@
 import "./App.css";
 import axios from "axios";
+import { useState } from "react";
+import Comment from "./Comment";
+
+interface CommentType {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
+  body: string;
+}
 
 function App() {
+  const [comments, setComment] = useState<any>([]);
   const onClickComments = () => {
     axios
-      .get("https://jsonplaceholder.typicode.com/comments")
+      .get<Array<CommentType>>("https://jsonplaceholder.typicode.com/comments")
       .then((res) => {
-        console.log(res.data);
-      })
-      .catch(() => {
-        console.log("error");
-      });
-  };
-
-  const onClickComment1 = () => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/comments/4")
-      .then((res) => {
-        console.log(res.data);
+        setComment(res.data);
       })
       .catch(() => {
         console.log("error");
@@ -27,7 +27,9 @@ function App() {
   return (
     <div className="App">
       <button onClick={onClickComments}>comments</button>
-      <button onClick={onClickComment1}>id=1:comments</button>
+      {comments.map((comment: CommentType) => (
+        <Comment body={comment.body} id={comment.id} email={comment.email} />
+      ))}
     </div>
   );
 }
