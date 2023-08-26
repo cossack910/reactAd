@@ -1,23 +1,25 @@
 import "./App.css";
 import axios from "axios";
+import { useState } from "react";
+import Comment from "./Comment";
+import { CommentInterface } from "./interface/comment";
+import { UserProfile } from "./UserProfile";
+import User from "./interface/user";
+
+const user: User = {
+  name: "god",
+  hobbies: ["猫じゃらし", "散歩"],
+};
 
 function App() {
+  const [comments, setComment] = useState<any>([]);
   const onClickComments = () => {
     axios
-      .get("https://jsonplaceholder.typicode.com/comments")
+      .get<Array<CommentInterface>>(
+        "https://jsonplaceholder.typicode.com/comments"
+      )
       .then((res) => {
-        console.log(res.data);
-      })
-      .catch(() => {
-        console.log("error");
-      });
-  };
-
-  const onClickComment1 = () => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/comments/4")
-      .then((res) => {
-        console.log(res.data);
+        setComment(res.data);
       })
       .catch(() => {
         console.log("error");
@@ -26,8 +28,11 @@ function App() {
 
   return (
     <div className="App">
+      <UserProfile user={user} />
       <button onClick={onClickComments}>comments</button>
-      <button onClick={onClickComment1}>id=1:comments</button>
+      {comments.map((comment: CommentInterface) => (
+        <Comment body={comment.body} id={comment.id} email={comment.email} />
+      ))}
     </div>
   );
 }
