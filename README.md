@@ -8,12 +8,14 @@ docker exec -it reactad npm run dev
 
 ### tips
 
-| No                                                   | title          |
-| ---------------------------------------------------- | -------------- |
-| [#1](https://github.com/cossack910/reactAd/issues/1) | 再レンダリング |
-| [#2](https://github.com/cossack910/reactAd/issues/2) | CSS            |
-| [#3](https://github.com/cossack910/reactAd/issues/4) | React Router6  |
-| [#4](https://github.com/cossack910/reactAd/issues/7) | axios          |
+| No                                                    | title                    |
+| ----------------------------------------------------- | ------------------------ |
+| [#1](https://github.com/cossack910/reactAd/issues/1)  | 再レンダリング           |
+| [#2](https://github.com/cossack910/reactAd/issues/2)  | CSS                      |
+| [#3](https://github.com/cossack910/reactAd/issues/4)  | React Router6            |
+| [#4](https://github.com/cossack910/reactAd/issues/7)  | axios                    |
+| [#5](https://github.com/cossack910/reactAd/issues/9)  | 型定義の Pick と Omit    |
+| [#6](https://github.com/cossack910/reactAd/issues/10) | オプショナルチェイニング |
 
 ＃環境構築
 

@@ -1,8 +1,5 @@
-interface CommentType {
-  id: number;
-  email: string;
-  body: string;
-}
+import { CommentInterface } from "./interface/comment";
+import React from "react";
 
 const dotComCheckFunc = (text: string) => {
   if (~text.indexOf(".com")) {
@@ -11,7 +8,9 @@ const dotComCheckFunc = (text: string) => {
   return false;
 };
 
-export const Comment = (props: CommentType) => {
+export const Comment: React.FC<
+  Pick<CommentInterface, "body" | "id" | "email">
+> = (props) => {
   const { body, id, email } = props;
   const emailDotComCheck: string = dotComCheckFunc(email)
     ? "[.com]"
