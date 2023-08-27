@@ -1,38 +1,26 @@
 import "./App.css";
-import axios from "axios";
-import { useState } from "react";
-import Comment from "./Comment";
-import { CommentInterface } from "./interface/comment";
-import { UserProfile } from "./UserProfile";
-import User from "./interface/user";
-
-const user: User = {
-  name: "god",
-  hobbies: ["猫じゃらし", "散歩"],
-};
+import UserCard from "./components/UserCard";
+import { useAllUsers } from "./hooks/useAllUsers";
 
 function App() {
-  const [comments, setComment] = useState<any>([]);
-  const onClickComments = () => {
-    axios
-      .get<Array<CommentInterface>>(
-        "https://jsonplaceholder.typicode.com/comments"
-      )
-      .then((res) => {
-        setComment(res.data);
-      })
-      .catch(() => {
-        console.log("error");
-      });
-  };
+  const { getUsers, userProfiles, loading, error } = useAllUsers();
 
+  const onClickFetchUser = () => getUsers();
   return (
     <div className="App">
-      <UserProfile user={user} />
-      <button onClick={onClickComments}>comments</button>
-      {comments.map((comment: CommentInterface) => (
-        <Comment body={comment.body} id={comment.id} email={comment.email} />
-      ))}
+      <button onClick={onClickFetchUser}>データ取得</button>
+      <br />
+      {error ? (
+        <p style={{ color: "red" }}>データ取得失敗</p>
+      ) : loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          {userProfiles.map((user) => (
+            <UserCard key={user.id} user={user} />
+          ))}
+        </>
+      )}
     </div>
   );
 }

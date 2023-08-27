@@ -16,6 +16,7 @@ docker exec -it reactad npm run dev
 | [#4](https://github.com/cossack910/reactAd/issues/7)  | axios                    |
 | [#5](https://github.com/cossack910/reactAd/issues/9)  | 型定義の Pick と Omit    |
 | [#6](https://github.com/cossack910/reactAd/issues/10) | オプショナルチェイニング |
+| [#7](https://github.com/cossack910/reactAd/issues/12) | カスタムフック           |
 
 ＃環境構築
 
