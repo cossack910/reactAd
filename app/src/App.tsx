@@ -1,38 +1,59 @@
 import "./App.css";
+import UserCard from "./components/UserCard";
 import axios from "axios";
-import { useState } from "react";
-import Comment from "./Comment";
-import { CommentInterface } from "./interface/comment";
-import { UserProfile } from "./UserProfile";
-import User from "./interface/user";
+import { User } from "./types/api/User";
+import { UserProfile } from "./types/UserProfile";
+import React, { useState } from "react";
 
-const user: User = {
-  name: "god",
-  hobbies: ["猫じゃらし", "散歩"],
+const user = {
+  id: 1,
+  name: "aa",
+  email: "aaa.com",
+  address: "SSSSSSS",
 };
 
 function App() {
-  const [comments, setComment] = useState<any>([]);
-  const onClickComments = () => {
+  const [userProfiles, setUserProfiles] = useState<Array<UserProfile>>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const onClickFetchUser = () => {
+    setLoading(true);
+    setError(false);
     axios
-      .get<Array<CommentInterface>>(
-        "https://jsonplaceholder.typicode.com/comments"
-      )
+      .get<Array<User>>("https://jsonplaceholder.typicode.com/users")
       .then((res) => {
-        setComment(res.data);
+        const data = res.data.map((user) => ({
+          id: user.id,
+          name: `${user.name}(${user.username})`,
+          email: user.email,
+          address: `${user.address.city}${user.address.suite}${user.address.street}`,
+        }));
+        setUserProfiles(data);
       })
       .catch(() => {
+        setError(true);
         console.log("error");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
-
   return (
     <div className="App">
-      <UserProfile user={user} />
-      <button onClick={onClickComments}>comments</button>
-      {comments.map((comment: CommentInterface) => (
-        <Comment body={comment.body} id={comment.id} email={comment.email} />
-      ))}
+      <button onClick={onClickFetchUser}>データ取得</button>
+      <br />
+      {error ? (
+        <p style={{ color: "red" }}>データ取得失敗</p>
+      ) : loading ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          {userProfiles.map((user) => (
+            <UserCard key={user.id} user={user} />
+          ))}
+        </>
+      )}
     </div>
   );
 }
